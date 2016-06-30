@@ -1,11 +1,11 @@
-name: etcd
-summary: Deploy a TLS terminated ETCD Cluster
+name: etcd-local-proxy
+summary: Deploy an ETCD proxy for local client
 maintainers:
-    - Charles Butler <charles.butler@canonical.com>
+    - Neil Jerram <neil@tigera.io>
 description: |
   This charm supports deploying Etcd from the upstream binaries with resources.
-  It will also TLS wrap your service, and distribute client keys to any service
-  connecting. Etcd is a highly available key/value store.
+  It will use TLS to secure its connections to the Etcd master nodes.
+  Etcd is a highly available key/value store.
 tags:
   - database
   - keystore
@@ -24,11 +24,6 @@ resources:
     filename: etcdctl
     description: Etcdctl binary release
 subordinate: false
-provides:
-  db:
-    interface: etcd
+requires:
   proxy:
     interface: etcd-proxy
-peers:
-  cluster:
-    interface: etcd

@@ -2,8 +2,4 @@ options:
   port:
     type: int
     default: 2379
-    description: Port to run the public ETCD service on
-  management_port:
-    type: int
-    default: 2380
-    description: Port to run the ETCD Management service
+    description: Port to provide local ETCD service on

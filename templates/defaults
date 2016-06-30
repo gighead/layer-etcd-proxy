@@ -1,22 +1,12 @@
 # This file is rendered by Juju, manual edits will not be persisted
-ETCD_DATA_DIR=/var/lib/etcd/default
-ETCD_NAME={{ unit_name }}
-ETCD_ADVERTISE_CLIENT_URLS="https://{{ private_address }}:{{ port }}"
-ETCD_LISTEN_CLIENT_URLS="http://127.0.0.1:4001,https://0.0.0.0:{{ port }}"
-ETCD_LISTEN_PEER_URLS="https://0.0.0.0:{{ management_port }}"
-ETCD_INITIAL_ADVERTISE_PEER_URLS="https://{{ private_address }}:{{ management_port }}"
+ETCD_PROXY=on
+ETCD_LISTEN_CLIENT_URLS="http://127.0.0.1:{{ port }}"
 {% if cluster %}
 ETCD_INITIAL_CLUSTER="{{ cluster }}"
-ETCD_INITIAL_CLUSTER_STATE={{ cluster_state }}
-ETCD_INITIAL_CLUSTER_TOKEN={{ token }}
 {% endif %}
 # SSL CONFIGURATION
-ETCD_CERT_FILE={{ server_certificate }}
-ETCD_KEY_FILE={{ server_key }}
-ETCD_TRUSTED_CA_FILE={{ ca_certificate }}
 ETCD_PEER_CERT_FILE={{ server_certificate }}
 ETCD_PEER_KEY_FILE={{ server_key }}
 ETCD_PEER_TRUSTED_CA_FILE={{ ca_certificate }}
 # SSL Strict Mode
 ETCD_PEER_CLIENT_CERT_AUTH=true
-ETCD_CLIENT_CERT_AUTH=true
