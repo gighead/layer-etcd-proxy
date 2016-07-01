@@ -106,7 +106,7 @@ def install_etcd():
 
 
 @when('etcd.installed')
-@when('proxy.connected')
+@when('proxy.tls.available')
 def configure_etcd(proxy):
     proxy.save_client_credentials('/tmp/etcd_key',
                                   '/tmp/etcd_cert',
